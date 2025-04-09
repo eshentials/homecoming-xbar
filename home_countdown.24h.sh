@@ -4,8 +4,9 @@
 # <xbar.author>Eshani</xbar.author>
 # <xbar.author.github>eshentials</xbar.author.github>
 # <xbar.desc>Displays a fancy countdown to your homecoming date with optional GUI input.</xbar.desc>
+# <xbar.image>https://raw.githubusercontent.com/eshentials/homecoming-xbar/main/home_countdown.png</xbar.image>
 # <xbar.dependencies>bash, osascript</xbar.dependencies>
-# <xbar.abouturl>https://github.com/your-repo-or-readme</xbar.abouturl>
+# <xbar.abouturl>https://github.com/eshentials/homecoming-xbar</xbar.abouturl>
 # <xbar.refreshTime>24h</xbar.refreshTime>
 
 CONFIG_FILE="$HOME/.home_target_date"
@@ -44,6 +45,9 @@ elif [ "$DAYS_REMAINING" -eq 1 ]; then
   echo "🏡 1 day!"
 elif [ "$DAYS_REMAINING" -eq 0 ]; then
   echo "🏠 Today!"
+
+  # 🎉 macOS notification!
+  osascript -e 'display notification "You made it! It’s Homecoming Day" with title "Welcome Home!" sound name "Funk"'
 else
   echo "✨ You're home!"
 fi
