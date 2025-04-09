@@ -12,7 +12,7 @@
 CONFIG_FILE="$HOME/.home_target_date"
 
 # Default fallback date if config not found
-DEFAULT_DATE="2025-05-15"
+DEFAULT_DATE="15-05-2025"
 
 # Read target date from config or fallback
 if [[ -f "$CONFIG_FILE" ]]; then
@@ -22,17 +22,17 @@ else
 fi
 
 # Format today's date
-TODAY=$(date +%Y-%m-%d)
+TODAY=$(date +%d-%m-%Y)
 
 # Calculate remaining days
-TARGET_EPOCH=$(date -jf "%Y-%m-%d" "$TARGET_DATE" +%s 2>/dev/null)
-TODAY_EPOCH=$(date -jf "%Y-%m-%d" "$TODAY" +%s)
+TARGET_EPOCH=$(date -jf "%d-%m-%Y" "$TARGET_DATE" +%s 2>/dev/null)
+TODAY_EPOCH=$(date -jf "%d-%m-%Y" "$TODAY" +%s)
 
 # Safety check: if date format is invalid
 if [[ -z "$TARGET_EPOCH" ]]; then
   echo "❌ Invalid Date"
   echo "---"
-  echo "⚙️ Set Home Date | bash='osascript' param1='-e' param2='tell app \"System Events\" to display dialog \"Enter target date (YYYY-MM-DD):\" default answer \"$DEFAULT_DATE\"' param3='-e' param4='set theDate to text returned of result' param5='-e' param6='do shell script \"echo \" & theDate & \" > $CONFIG_FILE\"'"
+  echo "⚙️ Set Home Date | bash='osascript' param1='-e' param2='tell app \"System Events\" to display dialog \"Enter target date (DD-MM-YYYY):\" default answer \"$DEFAULT_DATE\"' param3='-e' param4='set theDate to text returned of result' param5='-e' param6='do shell script \"echo \" & theDate & \" > $CONFIG_FILE\"' refresh=true"
   exit
 fi
 
@@ -58,4 +58,4 @@ echo "📅 Target: $TARGET_DATE"
 echo "📆 Today:  $TODAY"
 echo "⏳ Days Left: $DAYS_REMAINING"
 echo "---"
-echo "✏️ Change Home Date | bash='osascript' param1='-e' param2='tell app \"System Events\" to display dialog \"Enter target date (YYYY-MM-DD):\" default answer \"$TARGET_DATE\"' param3='-e' param4='set theDate to text returned of result' param5='-e' param6='do shell script \"echo \" & theDate & \" > $CONFIG_FILE\"' refresh=true"
+echo "✏️ Change Home Date | bash='osascript' param1='-e' param2='tell app \"System Events\" to display dialog \"Enter target date (DD-MM-YYYY):\" default answer \"$TARGET_DATE\"' param3='-e' param4='set theDate to text returned of result' param5='-e' param6='do shell script \"echo \" & theDate & \" > $CONFIG_FILE\"' refresh=true"
