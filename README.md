@@ -11,6 +11,9 @@ bash (default on macOS)
 osascript (included on macOS)
 
 How to Install
+# Quick Install (macOS Terminal)
+bash <(curl -s https://raw.githubusercontent.com/eshentials/homecoming-xbar/main/install.sh)
+
 Download or copy this script to your Xbar plugins folder.
 
 Default path: ~/Library/Application Support/xbar/plugins
